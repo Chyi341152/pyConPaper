@@ -3,7 +3,10 @@
 
 import threading
 
-init = threading.Event()
+# Condition Variable
+items = []
+items_cv = threading.Condition()
+
 
 def worker():
     init.wait()         # Wait until initialized
@@ -20,4 +23,13 @@ if __name__ == '__main__':
     threading.Thread(target=worker).start()
     threading.Thread(target=worker).start()
 
-    initialize()            # Initialize
+    initialize()            # Initialize 
+
+"""
+    cv = threading.Condition([LOCK])
+    cv.acquire()        # Acquire the underlying lock 
+    cv.release()        # Release the underlying lock 
+    cv.wait()           # Wait for condition 
+    cv.notify()         # Signal that a condition holds 
+    cv.notifyAll()      # Signal all threads waiting.
+"""

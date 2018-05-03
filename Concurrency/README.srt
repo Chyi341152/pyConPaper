@@ -1,0 +1,60 @@
+An Introduction to Python Concurrency
+=====================================
+
+Why Concurrency and Python?
+==========================
+    Python is a very high level language
+    And it comes with a large library
+        Useful data types (dictionaries, lists, etc)
+        Network protocols
+        Text parsing (regrxs, XML, HTML, etc)
+        Files and the file system
+        Databases
+
+Performance is Irrelevant
+=========================
+    Many concurrent programs are "I/O bound"
+    They spend virtually all of their time sitting around waiting
+    Python can "wait" just as fast as C (may be even faster-although I haven't measured it)
+
+
+Threads
+=======
+    "concurrent programming"
+    An independent task running inside a program
+    Shares resources(memory, files, network connections, etc) with the main program
+    Has its own independent flow of execution (stack, current instruction)
+
+    Daemonic Threads
+        If a thread runs forever, make it "daemonic", If you don't do this, the interpreter will lock
+        When the main thread exits
+        Normally you use this for background tasks
+
+    Threads share all of the data in your program
+    Threads scheduling is non-deterministic
+    Operations often take several steps and might be interrupted mid-stream (non-atomic)
+
+    Thread Synchronization
+        Synchronization Options
+            Lock
+            RLock
+            Semaphore
+            BoundedSemaphore
+            Event
+            Condition
+
+    Mutual Exclusion Lock
+    Probably the most commonly used synchronization primitive
+    Primarily used to synchronize threads so that only one thread can make modifications to shared data at any given time
+
+        m = threading.Lock()
+        m.acquire()     # Acquire the lock
+        m.release()     # Release the lock
+    Lock Management
+        Acquired locks must always be released
+
+    Locks and Deadlock
+        Don't write code that acquires more than one mutex lock at a time
+
+    RLock
+        Reentrant Mutex Lock

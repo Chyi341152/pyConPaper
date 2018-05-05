@@ -1,0 +1,38 @@
+Machining Learning
+==================
+    Chapter I. The Machine Learning Landscape
+        Macine Learning is the science (and art) of programming computers so they can learn from data/
+
+        Types of Macine Learning Systems:
+            1. Supervised Learning
+                In supervised learning, the training data you feed to the algorithm includes the desired solutions called label.
+                [the most important supervised learning algorithms]
+                    k-Nearest Neighnors
+                    Linear Regression
+                    Logistic Regression
+                    Support Vector Machines
+                    Decision Trees and Random Forests
+                    Neural networks
+            2. Unsupervised Learning
+                In unsuprtvised learning, the training data is unlabeled,The system tries to learn without a teacher
+                [the most important unsupervised learning algorithms]
+                    Clustering:
+                        k-Means
+                        Hierarchical Cluster Analysis(HCA) 层次聚类分析
+                        Expectation Maximization
+                    Visualization and dimensionality reduction
+                        Principal Component Analysis (PCA)
+                        Kernel PCA
+                        Locally-Linear Embedding (LLE)
+                        t-distributed Stochastic Neighbor Embedding (t-SNE)
+                    Association rule learning
+                        Apriori
+                        Eclat
+            3. Reinforcement Learning
+                
+
+
+JARGON：专业术语
+OCR: Optical Character Recongnition
+spam filter: 垃圾邮件过滤
+dimensionality reduction : 降低纬度，in which the goal is to simplify the data without losing too much information

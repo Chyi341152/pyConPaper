@@ -1,0 +1,31 @@
+Asynchronous code 异步编程
+===================
+    The simplest definition of Async...
+        - "A style of concurrent programming"
+        async IO that's not the only way to do a thing
+
+    How Does Python Do Multiple Things At Once?
+        - Multiple Processes
+            The OS does all the multi-tasking work
+            Only option for multi-core concurrency
+        - Multiple Threads
+            The OS does all the multi-tasking work
+            In CPython, the GIL prevents multi-core concurrency
+        - Asynchronous Programming
+            No OS intervention
+            One process, one thread
+
+
+    A practical definition of Async...
+        "A style of concurrent programming in which tasks release the CPU during waiting periods, so that other tasks can use it."
+
+    How is Async Implemented?
+        Suspend and Resume:
+            Async functions need the ability to suspend and resume
+            A function that enters a waiting period is suspended, and only resumed when the wait is over
+
+            Four ways to implement suspend/resume in Python
+                - Callback functions
+                - Generator functions
+                - Async/wait (Python 3.5+)
+                - Greenlets (requires greenlet package)

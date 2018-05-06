@@ -162,3 +162,24 @@ Processes and Message
         A message is just a bunch of bytes (a buffer)
         A "serialized" representation of some data
         Creating serialized data in Python is easy
+
+    Distributed Memory
+        With multiprocessing, there are no shared data structures
+        Every process is completely isolated
+        Since there are no shared structures, forget about all of that locking business
+        Everything is focused on messaging
+
+Alternatives to Threads and Processes
+=====================================
+    Event-driven programming
+        Turn all I/O handling into events
+        Do everything through events handlers
+        asyncore, Twisted, etc
+    Coroutines  协程
+        Cooperative multitasking all in Python
+        Tasklets, green threads
+
+    Events and Asyncore
+        asyncore library module
+        Implements a wrapper around sockets that turn all blocking I/O operations into events
+

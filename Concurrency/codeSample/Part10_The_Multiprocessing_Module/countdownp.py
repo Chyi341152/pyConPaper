@@ -16,7 +16,7 @@ class CountdownProcess(multiprocessing.Process):
         while self.count > 0:
             print("Counting down", self.count)
             self.count -= 1
-            time.sleep(5)
+            time.sleep(1)
 
 
 if __name__ == '__main__':

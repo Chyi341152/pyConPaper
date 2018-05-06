@@ -58,3 +58,107 @@ Threads
 
     RLock
         Reentrant Mutex Lock
+
+Threads and Queues
+==================
+    Threaded programs are often easier to manage if they can be organized into producer/consumer components connected by queues
+
+The Problem with Threads
+========================
+    Thread programming quickly gets hairy
+    End up with a huge mess of shared data, locks, queues, and other syschronization primitives
+    Which is really unfortunate because Python threads have some major limitation
+
+
+The Inside Story on Python Threads
+==================================
+    What is a Thread?
+        Python threads are real system threads
+            POSIX threads(pthreads)
+            Widnows threads
+        Fully managed by the host operating system
+            All cheduling/thread switching
+        Represent threaded execution of the Python interpreter process (written in C)
+
+    The Infamous GIL
+        Only one Python thread can execute in the interpreter at once
+        There is a "global interpreter lock" that carefully controls thread execution
+        The GIL ensures that sure each thread gets exclusive access to the entire interpreter internals when it's running
+
+    GIL Behavior
+        Whenever a thread runs, it holds the GIL
+        However, the GIL is released on blocking I/O
+        So, any time a thread is forced to wait, other "ready" threads get their chance to run.
+        Basically a kind of "cooperative" multitasking
+
+    CPU Bound Processing
+        To deal with CPU-bound threads, the interpreter periodically performs a "check"
+        By default, every 100 interpreter "ticks"
+
+    The Check Interval
+        The check interval is a global counter that is completely independent of thread scheduling
+        A "check" is simply made every 100 "ticks"
+
+    The Periodic Check
+        What happens during the periodic check?
+            In the main thread only, signal handlers will execute if there are any pending signals
+            Release and reacquisition of the GIL
+        That last bullet describes how multiple CPU-bound threads get to run (by briefly releasing the GIL, other threads get a chance to run)
+
+    What is a "Tick"?
+        Ticks loosely map to interpreter instructions
+        import dis
+        print(dis.dis())
+
+    Tick Execution
+        Interpreter ticks are not time-based
+        Ticks don't have consistent execution times
+        Long operations can block everything
+        >>> nums = range(1000000000)
+        >>> -1 in nums # 1 tick ()
+
+    Thread Scheduling
+        Python does not have a thread scheduler
+        There is no notion of thread priorities,preemption, round-robin scheduling 没有线程优先级,抢占，循环调度
+        All thread scheduling is left to the host operating system
+
+    GIL Implementation
+        The GIL is not a simple mutex lock
+        The implementation (Unix) is either
+            A POSIX unnamed semaphore
+            or a pthreads condition variable
+        All interpreter locking is based on signaling
+            To acquire the GIL, check if it's free. If not,go to sleep and wait for a signal
+            To release the GIL, free it and signal
+
+    Why is the GIL there?
+        Simplifies the implementation of the Python interpreter
+        Better suited for reference counting(Python's memory management scheme)
+        Simplifies the use of C/C++ extensions. Extension function do not need to worry about thread synchronization
+        And for now, it's here to stay
+
+Final Words on Threads
+======================
+    I/O Bound Processing
+        Threads are still usefull for I/O-bound apps
+        - For example: A network server that needs to maintain several thousand long-lived TCP connections, but is not doing tons of hvavy CPU processing.
+        Here, you're really only limited by the host operating system's ability to manage and schedule a lot of threads
+        Most systems don't have much of a problem--even with thousands of threads.
+
+    Why Threads?
+        If everything is I/O-bound, you will get a very quick response time to any I/O activity
+        Python isn't doing the scheduling
+        So, Python is going to have a similar response behavior as a C program with a lot of I/O bound threads
+
+    Final Comments
+        Python threads are a useful tool, but you have to know how and when to use them.
+            I/O bound procesing only
+            Limit CPU-bound processing to C extensions(that release the GIL)
+        Threads are not the only way...
+
+Processes and Message
+=====================
+    Messages
+        A message is just a bunch of bytes (a buffer)
+        A "serialized" representation of some data
+        Creating serialized data in Python is easy

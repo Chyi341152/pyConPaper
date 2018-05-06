@@ -8,8 +8,9 @@
 
 import threading
 
+
 class Foo(object):
-    lock = threading.RLock()
+    lock = threading.RLock()        # it can be reacquired multiple times by the same thread
 
     def __init__(self):
         self.x = 0
@@ -33,6 +34,7 @@ def adder(f, count):
     while count > 0:
         f.incr()
         count -= 1
+
 
 def subber(f, count):
     while count > 0:

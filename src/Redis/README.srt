@@ -4,3 +4,6 @@ Redis: under the hood
 
 1. This article examines server startup and takes a high-level view of the request/response processing cycle.
 ============================================================================================================
+
+    Startup
+        redis-cli.c [ main() ]

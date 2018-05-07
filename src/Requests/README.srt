@@ -1,0 +1,58 @@
+Requests: HTTP for Humans
+=========================
+    -- Requests allows you to send organic, grass-fed HTTP/1.1 requests, without the need for manual labor.
+    There's no need to manually add query strings to your URLs, or to form-encode your POST data.
+    Keep-alive and HTTP connection pooling are 100% automatic
+
+    1. Keep-Alive & Connection Pooling
+    2. International Domains and URLs
+    3. Sessions with Cookie Persistence
+    4. Browser-style SSL Verification
+    5. Automatic Content Decoding
+    6. Basic/Digest Authentication
+    7. Elegant Key/Value Cookies
+    8. Automatic Decompression
+    9. Unicode Response Bodies
+    10. HTTP(S) Proxy Support
+    11. Multipart File Uploads
+    12. Streaming Downloads
+    13. Connection Timeouts
+    14. Chunked Requests
+    15. .netrc Support
+
+First Step:
+    The requests directory structure
+        __init__.py             : make Python treat the directories as containing packages
+        __version__.py          : Module Version Numbers
+        _internal_utils.py      : Provides utility functions that are consumed internally by Requests which depend on extremely few external helpers (such as compat)
+        adapters.py             : This module contains the transport adapters that Requests uses to define and maintain connections.
+        api.py                  : This module implements the Requests API.
+        auth.py                 : This module contains the authentication handlers for Requests
+        certs.py                : This module returns the preferred default CA certificate bundle.
+        compat.py               : This module handles import compatibility issues between Python 2 and Python3
+        cookoes.py              : 'cookielib.CookieJar'
+        exceptions.py           : This module contains the set of Requests exceptions
+        help.py                 : Module containing bug report helper(s).
+        hooks.py                : This module provides the capabilities for the Requests hooks system.
+        models.py               : This module contains the primary objects that power Requests
+        packages.py             : This code exists for backwards compatibility reasons
+        session.py              : This module provides a Session object to manage and persist settings across requests (cookies, auth, proxies)
+        status_codes.py         : as the name sugestion
+        structures.py           : Data structures that power Requests
+        utils.py                : This module provides functions that are used within Requests that are also useful for external consumption
+
+
+    reading cookie.py ...
+
+
+
+urllib3 -- is a powerful, sanifty-friendly HTTP client for Python
+=================================================================
+    1. Thread safety
+    2. Connection Pooling
+    3. Client-side SSL/TLS verification
+    4. File uploads with multipart encoding
+    5. Helpers for retrying requests and dealing with HTTP redirects
+    6. Support for gzip for HTTP and SOCKS
+    7. Proxy support for HTTP and SOCKS
+    8. 100% test converage

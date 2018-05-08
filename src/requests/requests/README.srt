@@ -42,7 +42,10 @@ First Step:
         utils.py                : This module provides functions that are used within Requests that are also useful for external consumption
 
 
-    reading cookie.py ...
+    readed help.py -- Help documentation information
+    reading session.py -- 
+    ===============
+
 
 
 

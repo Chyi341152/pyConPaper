@@ -10,16 +10,16 @@ that are also useful for external consumption.
 
 import codecs
 import collections
-import contextlib
+import contextlib           # Utilities for with-statement contexts
 import io
 import os
 import re
 import socket
 import struct
 import sys
-import tempfile
+import tempfile             # Generate temporary files and directories
 import warnings
-import zipfile
+import zipfile              #
 
 from .__version__ import __version__
 from . import certs
@@ -35,9 +35,9 @@ from .structures import CaseInsensitiveDict
 from .exceptions import (
     InvalidURL, InvalidHeader, FileModeWarning, UnrewindableBodyError)
 
-NETRC_FILES = ('.netrc', '_netrc')
+NETRC_FILES = ('.netrc', '_netrc')          # .netrc file contains login and initialization information used by the auto-login process.
 
-DEFAULT_CA_BUNDLE_PATH = certs.where()
+DEFAULT_CA_BUNDLE_PATH = certs.where()      # To reference the installed certificate authority (CA) bundle
 
 
 if sys.platform == 'win32':
@@ -46,7 +46,7 @@ if sys.platform == 'win32':
     def proxy_bypass_registry(host):
         try:
             if is_py3:
-                import winreg
+                import winreg               # Windows registry access; These functions expose the Windows registry API to Python.
             else:
                 import _winreg as winreg
         except ImportError:
@@ -54,10 +54,10 @@ if sys.platform == 'win32':
 
         try:
             internetSettings = winreg.OpenKey(winreg.HKEY_CURRENT_USER,
-                r'Software\Microsoft\Windows\CurrentVersion\Internet Settings')
+                                              r'Software\Microsoft\Windows\CurrentVersion\Internet Settings')
             # ProxyEnable could be REG_SZ or REG_DWORD, normalizing it
             proxyEnable = int(winreg.QueryValueEx(internetSettings,
-                                              'ProxyEnable')[0])
+                                                  'ProxyEnable')[0])
             # ProxyOverride is almost always a string
             proxyOverride = winreg.QueryValueEx(internetSettings,
                                                 'ProxyOverride')[0]
@@ -82,7 +82,7 @@ if sys.platform == 'win32':
                 return True
         return False
 
-    def proxy_bypass(host):  # noqa
+    def proxy_bypass(host):  # noqa : no quality assurance
         """Return True, if the host should be bypassed.
 
         Checks proxy settings gathered from the environment, if specified,

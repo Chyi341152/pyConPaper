@@ -7,3 +7,24 @@ Redis: under the hood
 
     Startup
         redis-cli.c [ main() ]
+
+
+Redis Introduction
+==================
+    NoSQL don't provide ACID:
+        atomicity
+        consistency
+        isolation
+        durability
+    NoSQL databases such as Redis are fast, scale easily, and are a great fit for many modern problems.
+    But as with everything else, it is important to always choose the right tool for the job.
+
+    Once you've weighted all the options, picking between SQL(for stable, predictable, relational data)
+    and NoSQL (for temporary, highly dynamic data) should be an easy task.
+
+    MongoDB: is a feature-heavy document database that allows you to perform range queries, regular expression searches,
+    index-ing, and MapReduce.
+
+    Redis is extremely fast, making it perfectly suited for applications that are write-heavy, data that change often,
+    and data that naturally fits one of redis data structures.
+

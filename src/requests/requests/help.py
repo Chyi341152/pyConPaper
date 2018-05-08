@@ -1,17 +1,22 @@
 """Module containing bug report helper(s)."""
 from __future__ import print_function
 
-import json
-import platform
+import json         # JSON encoder and decoder
+import platform     # Access to underlying playform's identifying data
 import sys
-import ssl
+import ssl          # TLS/SSL wrapper for socket objects
 
-import idna
+import idna         # Internationalized Domain Names in Application(IDNA)
 import urllib3
 import chardet
 
-from . import __version__ as requests_version
+import os,sys
 
+#from requests import __version__ as requests_version
+import __version__ as requests_version             # my change
+
+
+# try ... except statement has an optional else clause,It is useful for code that must be executed if they try clause does not raise an exception.
 try:
     from urllib3.contrib import pyopenssl
 except ImportError:
@@ -34,7 +39,7 @@ def _implementation():
     doesn't work for Jython or IronPython. Future investigation should be done
     to work out the correct shape of the code for those platforms.
     """
-    implementation = platform.python_implementation()
+    implementation = platform.python_implementation()           # Returns a string identifying the Python implementation.
 
     if implementation == 'CPython':
         implementation_version = platform.python_version()
@@ -53,15 +58,15 @@ def _implementation():
     else:
         implementation_version = 'Unknown'
 
-    return {'name': implementation, 'version': implementation_version}
+    return {'name': implementation, 'version': implementation_version}  # {'name': 'CPython', 'version': '3.6.5'}
 
 
 def info():
     """Generate information for a bug report."""
     try:
         platform_info = {
-            'system': platform.system(),
-            'release': platform.release(),
+            'system': platform.system(),        # Returns the system/OS name
+            'release': platform.release(),      # Returns the system's release
         }
     except IOError:
         platform_info = {
@@ -106,7 +111,7 @@ def info():
         'cryptography': cryptography_info,
         'idna': idna_info,
         'requests': {
-            'version': requests_version,
+            'version': requests_version.__version__,
         },
     }
 

@@ -15,4 +15,4 @@ packaged CA bundle.
 from certifi import where
 
 if __name__ == '__main__':
-    print(where())
+    print(where())              # To reference the installed certificate authority (CA) bundle

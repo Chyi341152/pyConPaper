@@ -29,3 +29,27 @@ Asynchronous code 异步编程
                 - Generator functions
                 - Async/wait (Python 3.5+)
                 - Greenlets (requires greenlet package)
+
+        Scheduling Asynchronous Tasks
+            Async frameworks need a scheduler, usually called "event loop"
+            The loop keeps track of all the running tasks
+            When a function is suspended, return controls to the loop, which then finds another function to start or resume.
+            This is called "" Cooperative multi-tasking
+
+    Async Pitfulls:
+        CPU Heavy Tasks
+            Long CPU-intensive tasks must routinely release the CPU to avoid starving other tasks
+            This can be done by "sleeping" periodically, such as once per loop iteration
+            To tell the loop to return control back as soon as possible, sleep for 0 seconds
+            Example: await asyncio.sleep(0)
+
+        Async and Python Standard Library
+            Blocking library functions are incompatible with async framworks
+                socket, select
+                subprocess, os, waitpid
+                threading, multiprocessing
+                time.sleep
+            All async frameworks provide non-block replacement for these
+            Eventlet and Gevent can "Monkey-patch" the standard library to make it async compatible
+            
+

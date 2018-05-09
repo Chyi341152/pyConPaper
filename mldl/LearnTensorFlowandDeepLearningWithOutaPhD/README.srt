@@ -1,0 +1,32 @@
+Tensorflow and deep learning - without a PhD by Martin Gorner:
+https://cloud.google.com/blog/big-data/2017/01/learn-tensorflow-and-deep-learning-without-a-phd
+
+
+    Examples:
+        1. handwritten digit recognition
+            Amnesty website
+            Building simpleest possible neural network for recognizing handwritten digit.
+            10 nurons, images 28 by 28 pixel
+            1.1 flatten all those 28 by 28 pixel into one long vector 784 pixels
+            1.2 weighted sum of all pixels + bias -> activation function(nonlinear activation非线性)
+
+            Which activation function are we going to use?
+                classification problems:
+                    softmax: extremely function 指数函数
+                    L = X.W + b
+                broadcasting Plus the rule is if you are trying to add two things and the size don't match don't give up
+                just replicate small thing as much as possible until the sizes match
+                    Y = softmax(X.W + b) # X.W matrix multiply; broadcast on all line
+                        Y: prediction y[100,10]
+                        X: Images X[100, 784]
+                        W: Weights W[784, 10]
+                        B: bias b[10]
+                    Y = tf.nn.softmax(tf.matmul(X, W) + b) # nn : neural network library
+                How do we assess the quality? 如何评估模型的正确性
+                    actual probabilities "one-hot" encode
+                    compute a distance: [two vectors, Euclidean distance 欧几里得距离; cross entropy交叉熵]
+                    Why do we did a minus sign on cross entropy, Because the values are between 0 & 1 so a logarithm of
+                        the is always negative that's why we add a minus sign
+
+
+        2. Recurrent neural networks

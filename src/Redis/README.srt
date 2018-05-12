@@ -28,3 +28,42 @@ Redis Introduction
     Redis is extremely fast, making it perfectly suited for applications that are write-heavy, data that change often,
     and data that naturally fits one of redis data structures.
 
+    SET key value   : Sets the key to hold the given value. Existing data is overwritten
+    GET key         : Returns the content held by the key.Works only with string value
+    INCR key        : increments the integer stored at key by 1
+    DECR key        : Decrements the integer stored at key by 1
+    INCRBY key value : Performs the same operation as INCR, but incrementing by value instead
+    DECRBY key value:  Performs the same operation as DECR, but decrementing by value instead
+    HSET hash-name key value: Sets a value on a hash with the given key.
+    HMSET hash-name key1 value1 [key2 value2] : Allows you to set several values in a hash with a single command.
+    HSET, HGET: Redis's Hash management commands; HINCRBY - to store this information
+    HGET : fetch single fields ; HGETALL : get full hash
+    HKEYS: return the keys stored in a particular hash
+    HVALS: returns only the values
+
+    Inspecting Your Data : viewing data with Redis
+        KEYS * : return all the keys in your database
+        TYPE keyname: This will tell whether that key is a string,hash,list,set,or zset
+        KEYS t*st : Returns all keys starting in t and ending in st
+        KEYS t?st : Return keys that start with t, end with st,and have exactly one charcter between them
+        KEYS t[ea]st: Returns only the keys test or tast, if thet exist
+
+    Keep in mind that every time you use the KEYS command, Redis has to scan all the keys in the database.Therefore, this can really slow down your server.
+    If you need a list f all your keys (or a subset) you might want to add those keys to a set and then query it.
+
+    MONITOR: Outputs the commands received by the Redis server in real time.
+
+    redis : db0~db15, redis database use number index,
+    select 2: change database
+
+    Implementing OAuth on Top of Redis
+        OAuth is an open standard for access delegation. 访问授权
+            consumer keys
+            consumer secrets
+            request tokens
+            access tokens
+            nonces
+
+
+
+

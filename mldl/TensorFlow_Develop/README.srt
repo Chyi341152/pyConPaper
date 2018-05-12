@@ -1,0 +1,39 @@
+https://www.tensorflow.org/get_started/
+=======================================
+
+
+Get Started:
+===========
+    1.[Machine Learning Crash Course] https://developers.google.com/machine-learning/crash-course/
+        {Introduction to Machine Learning}
+            What you learn here will allow you, as a software engineer, to do three things better.
+                1. First, it gives you a tool to reduce the time you spend programming.
+                2. Second, It will allow you to customize your products, making them better for specific groups of people.
+                3. Third, Machine learning lets you solve problems that you, as programmer, have no idea how to do by hand.
+
+        {Rules of Machine Learning}
+            1. Make sure your pipeline is solid end to end
+            2. Start with a reasonable objective
+            3. Add common-sense features in a simple way
+            4. Make sure that your pipeline stays solid
+
+            Rule #1: Don't be afraid to launch a product without machine learning
+            Rule #2: First, design and implement metrics
+            Rule #3: Choose machine learning over a complex heuristic
+
+
+
+Terminology
+===========
+    Instance        : The thing about which you want to make a prediction.
+    Label           : An answer for a prediction task either the answer produced by a machine learning system
+                        or the right answer supplied in training data.
+    Feature         : A property of an instance ysed in a prediction tasks
+    Feature Column  : A set of related features
+    Example         : An instance (with its features) and a label
+    Model           : A statistical representation of a prediction task.
+    Metric          : A number that you care about
+    Objective       : A metric that your algorithm is trying to optimize.
+    Pipeline        : The infrastructure surrounding a machine learning algorithm.
+    Click-through Rate: The percentage of visitors to a web page who click a link in an ad.
+

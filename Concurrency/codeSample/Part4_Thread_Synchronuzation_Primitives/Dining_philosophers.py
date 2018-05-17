@@ -69,7 +69,7 @@ def DiningPhilosophers():
     for p in philosophers:
         p.start()
 
-    time.sleep(120000)
+    time.sleep(1200000)
     Philosopher.running = False
     print("Now we're finishing.")
 

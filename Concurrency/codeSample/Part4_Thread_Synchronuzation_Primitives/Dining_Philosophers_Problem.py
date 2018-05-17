@@ -6,8 +6,6 @@
 # This is a very simple example of using the threading module to create parallel programs in Python.
 # It demonstrates basic locking functions and how to create a custom semaphore to manage concurrent threads.
 
-
-
 # Symmetric solution to the "dining philosophers"
 # problem. Uses a semaphore as the "butler" to avoid
 # deadlock.
@@ -19,6 +17,7 @@ import threading
 class Semaphore(object):
 
     def __init__(self, initial):
+        # A condition variable allows one or more threads to wait until they are notified by another thread.
         self.lock = threading.Condition(threading.Lock())
         self.value = initial
 

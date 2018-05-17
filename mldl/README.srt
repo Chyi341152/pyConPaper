@@ -37,3 +37,20 @@ JARGON：专业术语
 OCR: Optical Character Recongnition
 spam filter: 垃圾邮件过滤
 dimensionality reduction : 降低纬度，in which the goal is to simplify the data without losing too much information
+
+RabbitMQ
+========
+    A producer is a user application that sends message.
+    A queue is a buffer that stores messages
+    A consumer is a user application that receives messages
+
+    Exchange: is a very simple thing. On one side it receives messages from producers and the other side it pushes them to queues. The exchange
+        Must know exactly what to do with a message it receives. Should it be appended to a particular queue? Should it be appended to many queue?
+        Or should it get discarded. The rule for that are defined by the exchange type.
+
+        1. direct
+        2. topic
+        3. headers
+        4. fanout -- it just broadcasts all the messages it receives to all the queues it knows.
+
+    sudo rabbitmqctl list_exchanges # to list the exchanges on the server

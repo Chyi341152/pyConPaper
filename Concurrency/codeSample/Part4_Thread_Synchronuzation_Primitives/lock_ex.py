@@ -9,7 +9,7 @@ import threading
 X = 0                       # A shared Value
 COUNT = 1000000
 # Primarily used to synchronize threads so that only one thread can make modifications to shared data at any given time.
-X_Lock = threading.Lock()   # A lock for synchronizing access to X
+X_Lock = threading.Lock()   # A lock for synchronizing access to X, Race condition 竞争条件
 
 def addition():
     global X
@@ -45,5 +45,9 @@ print(X)
 """
     Only one thread can successfully acquire the lock at any given time 
     If another thread tries to acquire the lock when its already in use. it gets blocked until the lock is released.
+    
+    Threads and locks are little more than a formalization of what the underlying hardware actually does.That's both their great strength and their great weakness.
+    
+    But all is not rosy,但是一切不都乐观
     
 """
